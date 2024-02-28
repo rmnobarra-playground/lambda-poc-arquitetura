@@ -1,0 +1,55 @@
+schema-version: v2
+kind: manifest
+metadata:
+  name: lambda-poc-arquitetura
+  description: lambda-poc-arquitetura
+  starter: acme/lambda-python-aws@2.0.0/lambda-python-aws
+  stack-version-id: 01HP4AJF412JF1XEV1J797GKTE
+  stack: lambda-python-aws@2.0.0
+spec:
+  type: app
+  plugins:
+    - name: acme/lambda-python-aws@2.0.0/lambda-python@0.0.1
+      alias: lambda-python-1709163219504
+      plugin-version-id: 01HMVC7508Y2JEDW27Y06RF3YM
+      stack-version-id: 01HP4AJF412JF1XEV1J797GKTE
+      type: app
+      inputs: {}
+      inputs-envs: {}
+      connections:
+        generates: []
+        requires: []
+      links:
+        generates: []
+    - name: acme/lambda-python-aws@2.0.0/lambda-api-gateway@0.0.1
+      alias: lambda-api-gateway-1709163227073
+      plugin-version-id: 01HMVXY7FP3MVRTE12P7CENDP5
+      stack-version-id: 01HP4AJF412JF1XEV1J797GKTE
+      type: infra
+      inputs:
+        aws_region: us-east-1
+        function_name: lambda-app
+        route_key: hello
+        repo_name: lambda-poc-arquitetura
+        runtime: python3.8
+      inputs-envs: {}
+      connections:
+        generates: []
+        requires: []
+      links:
+        generates: []
+    - name: acme/lambda-python-aws@2.0.0/runtimes-workflow@0.0.1
+      alias: runtimes-workflow-1709163227087
+      plugin-version-id: 01HMVGRQSTYYS7XXWXZYE1KP4G
+      stack-version-id: 01HP4AJF412JF1XEV1J797GKTE
+      type: infra
+      inputs: {}
+      inputs-envs: {}
+      connections:
+        generates: []
+        requires: []
+      links:
+        generates: []
+  global-inputs: {}
+  global-computed-inputs: {}
+  repository: https://github.com/rmnobarra-playground/lambda-poc-arquitetura.git
